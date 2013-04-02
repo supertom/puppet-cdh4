@@ -22,6 +22,11 @@ class cdh4::hadoop::install::datanode {
 	package { "hadoop-hdfs-datanode": ensure => installed }
 }
 
+class cdh4::hadoop::install::journalnode {
+	# install journalnode package (for namenode high availability)
+	package { "hadoop-hdfs-journalnode ": ensure => installed }
+}
+
 
 
 #
@@ -71,4 +76,15 @@ class cdh4::hadoop::install::tasktracker {
  	# install tasktracker daemon package
  	package { "hadoop-0.20-mapreduce-tasktracker": ensure => installed }
 
+}
+
+# Class: cdh4::hadoop::install::jobtrackerha
+class cdh4::hadoop::install::jobtrackerha {
+
+ 	# install jobtracker HA daemon package
+ 	package { "hadoop-0.20-mapreduce-jobtrackerha": ensure => installed }
+	# can't install this if normal jobtracker is installed already
+	if (defined(Package['hadoop-0.20-mapreduce-jobtracker'])) {
+ 	   fail("Cannot install Jobtracker HA with standard jobtracker")
+	}
 }
