@@ -113,6 +113,17 @@ class cdh4::hadoop::service::jobtracker {
     }
 }
 
+# Class: cdh4::hadoop::service::jobtracker
+class cdh4::hadoop::service::jobtrackerha {
+    require cdh4::hadoop::install::jobtrackerha
+ 	require cdh4::hadoop::config
+
+    service { "hadoop-0.20-mapreduce-jobtrackerha":
+        ensure => "running",
+        enable => true,
+    }
+}
+
 # Class: cdh4::hadoop::service::tasktracker
 class cdh4::hadoop::service::tasktracker {
     require cdh4::hadoop::install::tasktracker

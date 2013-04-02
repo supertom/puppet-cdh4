@@ -53,6 +53,11 @@ class cdh4::hadoop::mr1::master inherits cdh4::hadoop {
 
 }
 
+class cdh4::hadoop::mr1::masterha inherits cdh4::hadoop {
+	include cdh4::hadoop::service::namenode
+	include cdh4::hadoop::service::jobtrackerha
+}
+
 
 # == Class cdh4::hadoop::mr1::worker
 #
